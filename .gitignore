@@ -12,3 +12,5 @@ frames/
 generate_narration.py
 generate_voices_safe.py
 
+
+record_perfect_video.py
