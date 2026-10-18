@@ -216,7 +216,7 @@ def audit_code(req: AuditRequest):
         try:
             data_bytes = json.dumps(payload).encode("utf-8")
             http_req = urllib.request.Request(url, data=data_bytes, headers=headers)
-            with urllib.request.urlopen(http_req, timeout=45) as resp:
+            with urllib.request.urlopen(http_req, timeout=70) as resp:
                 resp_data = json.loads(resp.read().decode("utf-8"))
                 break
         except urllib.error.HTTPError as e:
