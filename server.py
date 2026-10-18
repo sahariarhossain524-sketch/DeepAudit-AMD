@@ -30,7 +30,7 @@ AMD_API_BASE = "https://developer.amd.com.cn/radeon/api/v1"
 DEFAULT_API_KEY = os.getenv("RADEON_API_KEY", "").strip()
 
 app = FastAPI(
-    title="AegisCode AMD Core",
+    title="DeepAudit AMD Core",
     description="Autonomous Code Security, Concurrency & ROCm Performance Auditor powered by AMD Token Factory & Google Gemma-4-31B-IT",
     version="1.1.0"
 )
@@ -54,7 +54,7 @@ class AuditRequest(BaseModel):
 def health_check():
     return {
         "status": "healthy",
-        "service": "AegisCode AMD Audit Gateway",
+        "service": "DeepAudit AMD Audit Gateway",
         "amd_endpoint": AMD_API_BASE,
         "primary_model": "Gemma-4-31B-IT (Google DeepMind / AMD Instinct MI300X)",
         "api_key_configured": bool(DEFAULT_API_KEY)
@@ -143,12 +143,12 @@ def audit_code(req: AuditRequest):
         is_truncated = True
         selected_lines = raw_lines[:MAX_LINES]
         numbered_code = "\n".join(f"{idx + 1}: {line}" for idx, line in enumerate(selected_lines))
-        numbered_code += f"\n\n# ... [AegisCode MI300X Guard: Processed first {MAX_LINES} of {total_lines} lines to prevent latency timeout on AMD GPU] ..."
+        numbered_code += f"\n\n# ... [DeepAudit MI300X Guard: Processed first {MAX_LINES} of {total_lines} lines to prevent latency timeout on AMD GPU] ..."
     else:
         numbered_code = "\n".join(f"{idx + 1}: {line}" for idx, line in enumerate(raw_lines))
 
     system_prompt = (
-        "You are AegisCode AMD, an elite principal security engineer and AMD ROCm GPU performance specialist.\n"
+        "You are DeepAudit AMD, an elite principal security engineer and AMD ROCm GPU performance specialist.\n"
         "Analyze the provided code line-by-line and output a strict JSON audit report.\n\n"
         "CRITICAL RULES:\n"
         "1. Pinpoint the exact line_number where each vulnerability, bug, or leak occurs.\n"
@@ -233,7 +233,7 @@ def audit_code(req: AuditRequest):
         except Exception as e:
             last_err = str(e)
             if "timed out" in last_err.lower() or "timeout" in last_err.lower():
-                print(f"[AegisCode AMD] Remote inference timed out on {req.model}. Falling back to self-healing security report.")
+                print(f"[DeepAudit AMD] Remote inference timed out on {req.model}. Falling back to self-healing security report.")
                 first_line = raw_lines[0] if raw_lines else "dependency_manifest"
                 return {
                     "status": "success",
@@ -296,14 +296,14 @@ def serve_index():
     index_path = os.path.join(BASE_DIR, "static", "index.html")
     if os.path.exists(index_path):
         return FileResponse(index_path)
-    return {"message": "AegisCode AMD Core is active. UI loading..."}
+    return {"message": "DeepAudit AMD Core is active. UI loading..."}
 
 if __name__ == "__main__":
     import uvicorn
     sys.stdout.reconfigure(encoding="utf-8")
     port = int(os.getenv("PORT", "8000"))
     print("\n" + "=" * 60)
-    print(f">> AegisCode AMD - Live Server on http://127.0.0.1:{port}")
+    print(f">> DeepAudit AMD - Live Server on http://127.0.0.1:{port}")
     print(">> Powered by AMD Token Factory & Google Gemma-4-31B-IT")
     print("=" * 60 + "\n")
     uvicorn.run("server:app", host="0.0.0.0", port=port, reload=False)

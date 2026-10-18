@@ -1,4 +1,4 @@
-# 🛡️ AegisCode AMD — Autonomous Code Security & ROCm Performance Auditor
+# 🛡️ DeepAudit AMD — Autonomous Code Security & ROCm Performance Auditor
 > **AMD Developer Hackathon: ACT III**  
 > **Track:** DevTools & Intelligent Industry / Autonomous Agents  
 > **Target Awards:** AMD 1st Prize ($5,000) + Google Gemma Partner Award ($5,000)  
@@ -11,7 +11,7 @@ Modern software engineering teams face two compounding bottlenecks:
 1. **Critical Security & Concurrency Flaws:** Undetected SQL injection, unsafe deserialization (RCE), thread deadlocks, and GPU memory (VRAM) leaks cause catastrophic production outages and data breaches.
 2. **GPU Optimization Gap:** Most developers write standard CPU or naïve CUDA code, failing to exploit the massive **192GB HBM3 memory bandwidth** and matrix compute capabilities of **AMD Instinct MI300X** accelerators with the open ROCm ecosystem.
 
-**AegisCode AMD** is an autonomous, multi-model static analysis and hardware-acceleration copilot. Running directly on **AMD Radeon Cloud via AMD Token Factory**, it leverages Google DeepMind's flagship **Gemma-4-31B-IT** model to deliver forensic security vulnerability detection (OWASP/CWE), concurrency verification, ROCm kernel optimization advice, and 1-click deterministic patch generation.
+**DeepAudit AMD** is an autonomous, multi-model static analysis and hardware-acceleration copilot. Running directly on **AMD Radeon Cloud via AMD Token Factory**, it leverages Google DeepMind's flagship **Gemma-4-31B-IT** model to deliver forensic security vulnerability detection (OWASP/CWE), concurrency verification, ROCm kernel optimization advice, and 1-click deterministic patch generation.
 
 ---
 
@@ -19,15 +19,15 @@ Modern software engineering teams face two compounding bottlenecks:
 
 ```mermaid
 flowchart TD
-    A["Developer / CI Pipeline (Source Code Input)"] --> B["AegisCode FastAPI Gateway (server.py)"]
+    A["Developer / CI Pipeline (Source Code Input)"] --> B["DeepAudit FastAPI Gateway (server.py)"]
     B --> C["Audit Focus & Language Parser<br/>(Python, PyTorch, C++, CUDA/HIP, JS)"]
-    C --> D["AMD Token Factory Endpoint<br/>(https://developer.amd.com.cn/radeon/api/v1)"]
     D --> E["Google Gemma-4-31B-IT<br/>(AMD Instinct MI300X Cloud Cluster)"]
+    D["AMD Token Factory Endpoint<br/>(https://developer.amd.com.cn/radeon/api/v1)"]
     E --> F["Structured JSON Security & AST Report"]
     F --> G["Layer 1: OWASP & CVE Vulnerability Matrix<br/>(CWE-89 SQLi, CWE-502 Deserialization, Race Conditions)"]
     F --> H["Layer 2: ROCm & Hardware Acceleration Engine<br/>(HIP streams, PyTorch ROCm kernel fusion)"]
     F --> I["Layer 3: 1-Click Auto-Patch Generator<br/>(Production-ready clean code replacement)"]
-    G & H & I --> J["AegisCode Real-Time Observability IDE<br/>(Health Score, Token Telemetry, Live Diff Viewer)"]
+    G & H & I --> J["DeepAudit Real-Time Observability IDE<br/>(Health Score, Token Telemetry, Live Diff Viewer)"]
 ```
 
 ---
@@ -53,7 +53,7 @@ Provides domain-specific optimization directives tailored to AMD hardware:
 - Advises on leveraging AMD MI300X's 192GB unified VRAM pool for large model training without CPU offloading.
 
 ### 4. 1-Click Deterministic Patch Generation
-Rather than vague suggestions, AegisCode outputs complete, validated drop-in code patches with 1-click clipboard copy to immediately remediate detected issues.
+Rather than vague suggestions, DeepAudit outputs complete, validated drop-in code patches with 1-click clipboard copy to immediately remediate detected issues.
 
 ---
 
@@ -89,7 +89,7 @@ Open your browser to:
 ## 🏆 Hackathon Submission Metadata (lablab.ai)
 
 * **Project Title:**  
-  `AegisCode AMD — Autonomous Code Security & ROCm Performance Auditor`
+  `DeepAudit AMD — Autonomous Code Security & ROCm Performance Auditor`
 
 * **Selected Track:**  
   `Track 1: Intelligent Industry / DevTools & Autonomous Agents`
