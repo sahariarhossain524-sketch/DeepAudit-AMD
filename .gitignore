@@ -5,3 +5,10 @@ bench_models.py
 test_audit.py
 *.log
 .vercel/
+video_build/
+frames/
+*.wav
+*.mp3
+generate_narration.py
+generate_voices_safe.py
+
